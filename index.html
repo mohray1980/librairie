@@ -144,6 +144,12 @@
 <body>
 
   <header>
+
+<div id="cart-icon" onclick="showCart()" style="position: absolute; top: 20px; right: 20px; cursor: pointer;">
+  <img src="image/panier.png" alt="Panier" style="width: 40px; height: 40px;">
+  <span id="cart-count" style="background:red;color:white;border-radius:50%;padding:2px 6px;position:absolute;top:-10px;right:-10px;font-size:12px;">0</span>
+</div>
+
    <div style="display: flex; align-items: center; justify-content: center; gap: 90px;">
     <img src="image/logo.png" alt="Logo Librairie Savoir+" style="height: 240px;">
     
@@ -193,6 +199,9 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit1.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
+
 </div>
 <div class="product">
   <div class="carousel">
@@ -204,6 +213,9 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit2.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
+
 </div>
 
       <div class="product">
@@ -216,6 +228,8 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit3.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
 </div>
 
      <div class="product">
@@ -228,6 +242,8 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit4.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
 </div>
 
       <div class="product">
@@ -240,6 +256,8 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit5.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
 </div>
 <div class="product">
   <div class="carousel">
@@ -251,6 +269,8 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit6.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
 </div>
 <div class="product">
   <div class="carousel">
@@ -262,6 +282,8 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit7.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
 </div>
 <div class="product">
   <div class="carousel">
@@ -273,6 +295,8 @@
   </div>
   <h3>Livre de Mathématiques</h3>
   <button class="buy-button">Acheter</button>
+  <button class="add-to-cart-button" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Ajouter au panier</button>
+<a href="PAGES PRODUITS/produit8.html" class="btn" style="display:inline-block; margin-top:10px;">Savoir plus</a>
 </div>
 
     </div>
@@ -350,6 +374,182 @@ document.getElementById('orderForm').addEventListener('submit', function(e) {
 });
 
 
+</script>
+
+
+
+<!-- Panier Modal -->
+<div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:#fff; padding:20px; border-radius:10px; max-width:600px; width:90%; position:relative;">
+    <h2>Mon Panier</h2>
+    <table style="width:100%; margin-bottom:20px;" id="cart-table">
+      <thead>
+        <tr><th>Produit</th><th>Image</th><th>Action</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button onclick="openOrderFormWithCart()" style="background:#1e3a5f; color:white; padding:10px 20px; border:none; border-radius:8px;">Commander</button>
+    <button onclick="closeCart()" style="margin-left:10px;">Fermer</button>
+  </div>
+</div>
+
+
+<script>
+window.onload = function() {
+  let selectedImages = [];
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
+  }
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function closeForm() {
+    document.getElementById('popup-form').style.display = 'none';
+  }
+
+  function showCart() {
+    const modal = document.getElementById('cart-modal');
+    const tbody = document.getElementById('cart-table').querySelector('tbody');
+    tbody.innerHTML = '';
+    cart.forEach((item, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td><img src="${item.image}" style="width:50px;"></td>
+        <td><button class="remove-btn" data-index="${index}">Supprimer</button></td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    // ⚠️ IMPORTANT : rebrancher les événements "Supprimer"
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = parseInt(e.target.getAttribute('data-index'));
+        removeFromCart(index);
+      });
+    });
+
+    modal.style.display = 'flex';
+  }
+
+  function closeCart() {
+    document.getElementById('cart-modal').style.display = 'none';
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    showCart();
+  }
+
+  function openOrderFormWithCart() {
+    const container = document.getElementById('productImages');
+    container.innerHTML = '';
+    selectedImages = [];
+    cart.forEach(item => {
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.style.width = '60px';
+      img.style.margin = '5px';
+      container.appendChild(img);
+      selectedImages.push(item.image);
+    });
+    document.getElementById('cart-modal').style.display = 'none';
+    document.getElementById('popup-form').style.display = 'flex';
+  }
+
+  // Formulaire : envoi vers WhatsApp avec panier
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    const tel = document.getElementById('tel').value;
+    const adresse = document.getElementById('adresse').value;
+
+    let message = `🛍️ Nouvelle commande depuis le site:%0A`;
+    message += `👤 Nom: ${nom}%0A📧 Email: ${email}%0A📞 Téléphone: ${tel}%0A🏠 Adresse: ${adresse}%0A`;
+
+    // Liste des produits du panier
+    if (cart.length > 0) {
+      message += `%0A🧾 Articles commandés:%0A`;
+      cart.forEach((item, i) => {
+        message += `• ${item.name}%0A${item.image}%0A`;
+      });
+    } else {
+      message += `%0A📌 Aucun article dans le panier !`;
+    }
+
+    const whatsappURL = `https://wa.me/212614799835?text=${message}`;
+    window.open(whatsappURL, '_blank');
+
+    closeForm();
+  });
+
+  document.querySelectorAll('.add-to-cart-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const product = button.closest('.product');
+      const name = product.querySelector('h3').textContent;
+      const image = product.querySelector('img').src;
+      cart.push({ name, image });
+      saveCart();
+      alert(name + " ajouté au panier.");
+    });
+  });
+
+  document.querySelectorAll('.buy-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const carousel = button.parentElement.querySelectorAll('img');
+      const container = document.getElementById('productImages');
+      container.innerHTML = '';
+      selectedImages = [];
+
+      carousel.forEach(img => {
+        if (img.tagName === 'IMG') {
+          const clone = img.cloneNode();
+          clone.style.width = '60px';
+          clone.style.margin = '5px';
+          container.appendChild(clone);
+          selectedImages.push(img.src);
+        }
+      });
+
+      document.getElementById('popup-form').style.display = 'flex';
+    });
+  });
+
+  // Carrousel
+  window.nextSlide = function(button) {
+    const carousel = button.closest('.carousel');
+    const images = carousel.querySelectorAll('img');
+    let current = Array.from(images).findIndex(img => img.classList.contains('active'));
+    images[current].classList.remove('active');
+    const next = (current + 1) % images.length;
+    images[next].classList.add('active');
+  };
+
+  window.prevSlide = function(button) {
+    const carousel = button.closest('.carousel');
+    const images = carousel.querySelectorAll('img');
+    let current = Array.from(images).findIndex(img => img.classList.contains('active'));
+    images[current].classList.remove('active');
+    const prev = (current - 1 + images.length) % images.length;
+    images[prev].classList.add('active');
+  };
+
+  // Fonctions accessibles globalement
+  window.showCart = showCart;
+  window.closeCart = closeCart;
+  window.openOrderFormWithCart = openOrderFormWithCart;
+  window.closeForm = closeForm;
+
+  updateCartCount();
+};
 </script>
 
 
